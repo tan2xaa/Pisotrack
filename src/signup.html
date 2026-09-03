@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pisotrack</title>
+    <link rel="stylesheet" href="./output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#141C18] flex justify-center items-center h-screen">
+    <main>
+      <div class="signup-form-container relative z-[2] flex-1 flex items-center justify-center px-5 pt-16 pb-10 w-[250px] h-[350px]">
+        <div class="card w-[400px] bg-[#F6F2E7] text-[#2A241C] rounded-[14px] px-[34px] pt-[38px] pb-[30px] relative">
+          <p class="subtext text-center">Business owner sign up</p>
+          <h1 class="font-['Fraunces',serif] font-semibold text-[27px] mt-0 mb-1.5 text-center">Create your account</h1>
+
+          <div class="input-container mt-8">
+
+            <div class="field mb-4">
+              <label for="business" class="block text-xs text-[#6B6656] mb-1.5">Business name</label>
+              <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
+                <input id="business" type="text" placeholder="Your business name" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
+              </div>
+            </div>
+
+            <div class="field mb-4">
+              <label for="email" class="block text-xs text-[#6B6656] mb-1.5">Email</label>
+              <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
+                <input id="email" type="text" placeholder="you@email.com" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
+              </div>
+            </div>
+
+            <div class="field mb-4">
+              <label for="pass" class="block text-xs text-[#6B6656] mb-1.5">Passcode</label>
+              <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
+                <input id="pass" type="password" placeholder="Create a passcode" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
+                <span class="toggle text-xs text-[#9C7A2E] cursor-pointer font-medium">Show</span>
+              </div>
+            </div>
+
+            <div class="field mb-4">
+              <label for="confirmPass" class="block text-xs text-[#6B6656] mb-1.5">Confirm passcode</label>
+              <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
+                <input id="confirmPass" type="password" placeholder="Re-enter your passcode" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
+                <span class="toggle-confirm text-xs text-[#9C7A2E] cursor-pointer font-medium">Show</span>
+              </div>
+            </div>
+
+            <p class="error-msg text-[#e53935] text-[0.85rem] -mt-2 mb-2 min-h-[1em]"></p>
+
+            <button class="signup w-full h-[47px] border-none rounded-[9px] bg-[#c99a3e] text-[#2A241C] text-[14.5px] font-semibold font-['Inter',sans-serif] cursor-pointer transition-colors duration-150 ease-in-out hover:bg-[#9C7A2E]">Create account</button>
+
+            <p class="text-center text-xs text-[#6B6656] mt-4">Already have an account? <a href="./login.html" class="text-[#9C7A2E] font-medium">Sign in</a></p>
+
+          </div>
+        </div>
+      </div>
+    </main>
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
