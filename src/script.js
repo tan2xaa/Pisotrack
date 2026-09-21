@@ -182,3 +182,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 });
+
+
+// LANDING PAGE
+
+var revealEls = document.querySelectorAll('.reveal');
+  var revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(function(el){ revealObserver.observe(el); });
+  var barsFired = false;
+  var statCards = document.getElementById('stat-cards');
+  function fireBars(){
+    if(barsFired) return;
+    barsFired = true;
+    document.querySelectorAll('.bar-fill').forEach(function(el){
+      el.style.width = el.getAttribute('data-target') + '%';
+    });
+    document.querySelectorAll('.bar').forEach(function(el){
+      el.style.height = el.getAttribute('data-target') + '%';
+    });
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var prefix = el.getAttribute('data-prefix') || '';
+      var start = performance.now();
+      var duration = 1000;
+      function step(now){
+        var p = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var value = target * eased;
+        el.textContent = prefix + value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  if(statCards){
+    var barsObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ fireBars(); barsObserver.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    barsObserver.observe(statCards);
+  }

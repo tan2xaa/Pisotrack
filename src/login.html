@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pisotrack — Sign up</title>
+    <title>Pisotrack — Sign in</title>
     <link rel="stylesheet" href="./output.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,16 +42,16 @@
       .field-box{ transition: border-color .2s ease, box-shadow .2s ease; }
       .field-box:focus-within{ border-color:#C99A3E; box-shadow: 0 0 0 3px rgba(201,154,62,0.18); }
 
-      .signup{ transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease; }
-      .signup:hover{ transform: translateY(-1px); box-shadow: 0 10px 22px -10px rgba(201,154,62,.55); }
-      .signup:active{ transform: translateY(0); }
+      .signin{ transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+      .signin:hover{ transform: translateY(-1px); box-shadow: 0 10px 22px -10px rgba(201,154,62,.55); }
+      .signin:active{ transform: translateY(0); }
 
-      .toggle, .toggle-confirm{ transition: color .15s ease; }
-      .toggle:hover, .toggle-confirm:hover{ color:#C99A3E; }
+      .toggle{ transition: color .15s ease; }
+      .toggle:hover{ color:#C99A3E; }
 
       @media (prefers-reduced-motion: reduce){
         .card, .glow, .mark, .chip-in, .float-chip{ animation:none !important; }
-        .signup:hover{ transform:none; }
+        .signin:hover{ transform:none; }
       }
     </style>
   </head>
@@ -68,11 +68,11 @@
 
     <!-- floating decorative entry chips -->
     <div class="chip-in float-chip hidden md:block absolute bg-[#F6F2E7] border border-[#DDD5C0] rounded-[10px] px-4 py-3 shadow-[0_20px_40px_-20px_rgba(0,0,0,.6)]" style="top:14%; left:8%; animation-delay:.15s;">
-      <p class="text-[10px] text-[#6B6656]">Client payment received</p>
+      <p class="text-[10px] text-[#6B6656]">Rent — Unit 4B</p>
       <p class="num text-sm font-medium text-[#9C7A2E]">+ 12,000.00</p>
     </div>
     <div class="chip-in float-chip hidden md:block absolute bg-[#F6F2E7] border border-[#DDD5C0] rounded-[10px] px-4 py-3 shadow-[0_20px_40px_-20px_rgba(0,0,0,.6)]" style="bottom:16%; right:9%; animation-delay:.3s; animation-duration:11s;">
-      <p class="text-[10px] text-[#6B6656]">Supplies budget</p>
+      <p class="text-[10px] text-[#6B6656]">Maintenance budget</p>
       <p class="num text-sm font-medium text-[#C1554A]">92% used</p>
     </div>
     <div class="chip-in float-chip hidden lg:block absolute bg-[#F6F2E7] border border-[#DDD5C0] rounded-[10px] px-4 py-3 shadow-[0_20px_40px_-20px_rgba(0,0,0,.6)]" style="top:20%; right:12%; animation-delay:.45s; animation-duration:10s;">
@@ -81,25 +81,17 @@
     </div>
 
     <main class="relative z-[2]">
-      <div class="signup-form-container relative flex flex-col items-center justify-center px-5">
+      <div class="login-form-container relative flex flex-col items-center justify-center px-5">
 
         <div class="mark w-11 h-11 rounded-[10px] bg-[#C99A3E] text-[#2A241C] flex items-center justify-center font-['Inter',sans-serif] font-semibold text-lg mb-6">₱</div>
 
         <div class="card w-[400px] bg-[#F6F2E7] text-[#2A241C] rounded-[14px] px-[34px] pt-[38px] pb-[30px] relative">
-          <p class="subtext text-center text-xs text-[#6B6656]">Business owner sign up</p>
-          <h1 class="font-['Fraunces',serif] font-semibold text-[27px] mt-0 mb-1.5 text-center">Create your account</h1>
+          <p class="subtext text-center text-xs text-[#6B6656]">Member sign in</p>
+          <h1 class="font-['Fraunces',serif] font-semibold text-[27px] mt-0 mb-1.5 text-center">Welcome back</h1>
 
-          <div class="input-container mt-8">
-
+          <div class="input-container mt-12">
             <div class="field mb-4">
-              <label for="business" class="block text-xs text-[#6B6656] mb-1.5">Business name</label>
-              <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
-                <input id="business" type="text" placeholder="Your business name" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
-              </div>
-            </div>
-
-            <div class="field mb-4">
-              <label for="email" class="block text-xs text-[#6B6656] mb-1.5">Email</label>
+              <label for="email" class="block text-xs text-[#6B6656] mb-1.5">Email or username</label>
               <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
                 <input id="email" type="text" placeholder="you@email.com" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
               </div>
@@ -108,31 +100,23 @@
             <div class="field mb-4">
               <label for="pass" class="block text-xs text-[#6B6656] mb-1.5">Passcode</label>
               <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
-                <input id="pass" type="password" placeholder="Create a passcode" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
+                <input id="pass" type="password" placeholder="Enter your passcode" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
                 <span class="toggle text-xs text-[#9C7A2E] cursor-pointer font-medium">Show</span>
-              </div>
-            </div>
-
-            <div class="field mb-4">
-              <label for="confirmPass" class="block text-xs text-[#6B6656] mb-1.5">Confirm passcode</label>
-              <div class="field-box flex items-center border border-[#DDD5C0] rounded-[9px] bg-[#FFFDF7] px-3.5 h-[46px]">
-                <input id="confirmPass" type="password" placeholder="Re-enter your passcode" class="border-none outline-none bg-transparent flex-1 text-sm font-['Inter',sans-serif] text-[#2A241C] placeholder:text-[#B1AA95]">
-                <span class="toggle-confirm text-xs text-[#9C7A2E] cursor-pointer font-medium">Show</span>
               </div>
             </div>
 
             <p class="error-msg text-[#e53935] text-[0.85rem] -mt-2 mb-2 min-h-[1em]"></p>
 
-            <button class="signup w-full h-[47px] border-none rounded-[9px] bg-[#c99a3e] text-[#2A241C] text-[14.5px] font-semibold font-['Inter',sans-serif] cursor-pointer">Create account</button>
+            <button class="signin w-full h-[47px] border-none rounded-[9px] bg-[#c99a3e] text-[#2A241C] text-[14.5px] font-semibold font-['Inter',sans-serif] cursor-pointer">Sign in</button>
 
-            <p class="text-center text-xs text-[#6B6656] mt-4">Already have an account? <a href="./login.html" class="text-[#9C7A2E] font-medium">Sign in</a></p>
-
+            <p class="text-center text-xs text-[#6B6656] mt-4">Don't have an account? <a href="./signup.html" class="text-[#9C7A2E] font-medium">Sign up</a></p>
           </div>
         </div>
       </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    </script>
     <script src="script.js"></script>
   </body>
 </html>
