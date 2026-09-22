@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PisoTrack — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#F8FAFC',
+          ink2: '#FFFFFF',
+          cream: '#0F172A',
+          creamsoft: '#0F172A',
+          textdark: '#0F172A',
+          muted: '#64748B',
+          mutedlight: '#94A3B8',
+          gold: { DEFAULT: '#C99A3E', deep: '#9C7A2E', soft: '#FEF3C7' },
+          border2: '#E2E8F0',
+          stamp: { DEFAULT: '#EF4444', light: '#FEE2E2' },
+          teal: { DEFAULT: '#0D9488' },
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'serif'],
+          sans: ['Inter', 'sans-serif'],
+          mono: ['IBM Plex Mono', 'monospace'],
+        },
+        borderRadius: { xl2: '12px' }
+      }
+    }
+  }
+</script>
+<style>
+  body{ font-family:'Inter', sans-serif; background-color: #F8FAFC; color: #0F172A; }
+  h1,h2,h3,.font-serif{ font-family:'Fraunces', serif; }
+  .num{ font-family:'IBM Plex Mono', monospace; }
+  .badge-dot{ animation:pulse 2.2s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+</style>
+</head>
+<body class="bg-[#F8FAFC] text-[#0F172A] antialiased">
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="w-56 shrink-0 border-r border-[#E2E8F0] bg-white hidden lg:flex flex-col">
+    <div class="h-16 flex items-center gap-2.5 px-5 border-b border-[#E2E8F0]">
+      <span class="w-8 h-8 rounded-md bg-gold text-white flex items-center justify-center font-mono text-sm font-semibold">₱</span>
+      <span class="font-serif font-semibold text-slate-900">PisoTrack</span>
+    </div>
+    <nav class="flex-1 px-3 py-5 space-y-1 text-sm">
+      <a class="flex items-center gap-2.5 px-3 py-2 rounded-md bg-amber-50 text-amber-800 font-medium">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Dashboard
+      </a>
+  </aside>
+
+  <div class="flex-1 min-w-0 bg-[#F8FAFC]">
+
+    <header class="h-16 border-b border-[#E2E8F0] bg-white flex items-center justify-between px-6">
+      <h1 class="text-lg font-semibold text-slate-900 leading-none">Dashboard</h1>
+      <button class="text-xs font-semibold bg-gold hover:bg-[#B38734] text-white rounded-md px-3.5 py-2 transition-colors">+ Add entry</button>
+    </header>
+
+    <div class="p-6 space-y-6">
+
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div class="border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs">
+          <p class="text-xs text-slate-500">Total balance</p>
+          <p id="total-balance" class="num text-2xl font-medium mt-1 text-slate-900">₱0</p>
+        </div>
+        <div class="border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs">
+          <p class="text-xs text-slate-500">Income this month</p>
+          <p id="total-income" class="num text-2xl font-medium mt-1 text-slate-900">₱0</p>
+        </div>
+        <div class="border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs">
+          <p class="text-xs text-slate-500">Expenses this month</p>
+          <p id="total-expenses" class="num text-2xl font-medium mt-1 text-slate-900">₱0</p>
+        </div>
+      </div>
+
+      <div class="border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs max-w-xl">
+  <p class="text-sm font-medium text-slate-900">Expenses by category</p>
+  <p class="text-xs text-slate-500">Where this month's spending went</p>
+
+  <!-- THE NEW CHART CONTAINER -->
+  <div class="mt-5 relative w-48 h-48 mx-auto">
+    <canvas id="expenseChart"></canvas>
+    
+    <!-- We absolutely position your total in the center of the doughnut ring -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-1">
+      <span class="num text-lg font-medium text-slate-900">₱31,940</span>
+      <span class="text-[10px] text-slate-500">Total</span>
+    </div>
+  </div>
+
+  <ul class="mt-5 space-y-3 text-sm">
+    <li class="flex items-center justify-between">
+      <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-gold inline-block"></span> Payroll</span>
+      <span class="num text-slate-900">₱15,330 <span class="text-slate-400">48%</span></span>
+    </li>
+    <li class="flex items-center justify-between">
+      <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-stamp inline-block"></span> Supplies</span>
+      <span class="num text-slate-900">₱8,940 <span class="text-slate-400">28%</span></span>
+    </li>
+    <li class="flex items-center justify-between">
+      <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-teal inline-block"></span> Utilities</span>
+      <span class="num text-slate-900">₱7,670 <span class="text-slate-400">24%</span></span>
+    </li>
+  </ul>
+</div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="./scripts/owner-dashboard.js"></script>
+</body>
+</html>
