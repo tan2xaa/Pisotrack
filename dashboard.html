@@ -57,6 +57,7 @@
       <a class="flex items-center gap-2.5 px-3 py-2 rounded-md bg-amber-50 text-amber-800 font-medium">
         <span class="w-1.5 h-1.5 rounded-full bg-gold"></span> Dashboard
       </a>
+    </nav>
   </aside>
 
   <div class="flex-1 min-w-0 bg-[#F8FAFC]">
@@ -69,10 +70,12 @@
     <div class="p-6 space-y-6">
 
       <div class="grid sm:grid-cols-3 gap-4">
-        <div class="border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs">
+        <!-- Owner-only: full balance view (hidden until role is confirmed as owner) -->
+        <div id="balance-card" data-owner-only class="hidden border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs">
           <p class="text-xs text-slate-500">Total balance</p>
           <p id="total-balance" class="num text-2xl font-medium mt-1 text-slate-900">₱0</p>
         </div>
+        <!-- Shared: both roles can see income/expense totals -->
         <div class="border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs">
           <p class="text-xs text-slate-500">Income this month</p>
           <p id="total-income" class="num text-2xl font-medium mt-1 text-slate-900">₱0</p>
@@ -83,42 +86,40 @@
         </div>
       </div>
 
-      <div class="border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs max-w-xl">
-  <p class="text-sm font-medium text-slate-900">Expenses by category</p>
-  <p class="text-xs text-slate-500">Where this month's spending went</p>
+      <!-- Owner-only: full expense breakdown by category (hidden until role is confirmed as owner) -->
+      <div id="category-chart-card" data-owner-only class="hidden border border-[#E2E8F0] rounded-xl2 p-5 bg-white shadow-xs max-w-xl">
+        <p class="text-sm font-medium text-slate-900">Expenses by category</p>
+        <p class="text-xs text-slate-500">Where this month's spending went</p>
 
-  <!-- THE NEW CHART CONTAINER -->
-  <div class="mt-5 relative w-48 h-48 mx-auto">
-    <canvas id="expenseChart"></canvas>
-    
-    <!-- We absolutely position your total in the center of the doughnut ring -->
-    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-1">
-      <span class="num text-lg font-medium text-slate-900">₱31,940</span>
-      <span class="text-[10px] text-slate-500">Total</span>
-    </div>
-  </div>
+        <div class="mt-5 relative w-48 h-48 mx-auto">
+          <canvas id="expenseChart"></canvas>
+          <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-1">
+            <span class="num text-lg font-medium text-slate-900">₱31,940</span>
+            <span class="text-[10px] text-slate-500">Total</span>
+          </div>
+        </div>
 
-  <ul class="mt-5 space-y-3 text-sm">
-    <li class="flex items-center justify-between">
-      <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-gold inline-block"></span> Payroll</span>
-      <span class="num text-slate-900">₱15,330 <span class="text-slate-400">48%</span></span>
-    </li>
-    <li class="flex items-center justify-between">
-      <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-stamp inline-block"></span> Supplies</span>
-      <span class="num text-slate-900">₱8,940 <span class="text-slate-400">28%</span></span>
-    </li>
-    <li class="flex items-center justify-between">
-      <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-teal inline-block"></span> Utilities</span>
-      <span class="num text-slate-900">₱7,670 <span class="text-slate-400">24%</span></span>
-    </li>
-  </ul>
-</div>
+        <ul class="mt-5 space-y-3 text-sm">
+          <li class="flex items-center justify-between">
+            <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-gold inline-block"></span> Payroll</span>
+            <span class="num text-slate-900">₱15,330 <span class="text-slate-400">48%</span></span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-stamp inline-block"></span> Supplies</span>
+            <span class="num text-slate-900">₱8,940 <span class="text-slate-400">28%</span></span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="flex items-center gap-2 text-slate-600"><span class="w-2 h-2 rounded-full bg-teal inline-block"></span> Utilities</span>
+            <span class="num text-slate-900">₱7,670 <span class="text-slate-400">24%</span></span>
+          </li>
+        </ul>
+      </div>
 
     </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script type="module" src="./scripts/owner-dashboard.js"></script>
+<script type="module" src="./scripts/dashboard.js"></script>
 </body>
 </html>
