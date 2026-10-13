@@ -64,7 +64,7 @@
 
     <header class="h-16 border-b border-[#E2E8F0] bg-white flex items-center justify-between px-6">
       <h1 class="text-lg font-semibold text-slate-900 leading-none">Dashboard</h1>
-      <button class="text-xs font-semibold bg-gold hover:bg-[#B38734] text-white rounded-md px-3.5 py-2 transition-colors">+ Add entry</button>
+      <button id="add-entry-btn" type="button" class="text-xs font-semibold bg-gold hover:bg-[#B38734] text-white rounded-md px-3.5 py-2 transition-colors">+ Add entry</button>
     </header>
 
     <div class="p-6 space-y-6">
@@ -116,6 +116,59 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<!-- ENTRY FORM MODAL (both roles) -->
+<div id="entry-modal" class="hidden fixed inset-0 z-50 items-center justify-center bg-slate-900/50 p-4" role="dialog" aria-modal="true" aria-labelledby="entry-modal-title">
+  <div class="w-full max-w-md bg-white rounded-xl2 border border-[#E2E8F0] shadow-lg p-6">
+    <div class="flex items-center justify-between">
+      <h2 id="entry-modal-title" class="text-lg font-semibold text-slate-900">Add entry</h2>
+      <button id="entry-close" type="button" class="text-slate-400 hover:text-slate-600 text-xl leading-none" aria-label="Close">&times;</button>
+    </div>
+
+    <form id="entry-form" class="mt-4 space-y-4" novalidate>
+      <div>
+        <label for="entry-type" class="block text-xs text-slate-500 mb-1">Type</label>
+        <select id="entry-type" class="w-full border border-[#E2E8F0] rounded-md px-3 py-2 text-sm bg-white">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label for="entry-amount" class="block text-xs text-slate-500 mb-1">Amount (₱)</label>
+          <input id="entry-amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" class="num w-full border border-[#E2E8F0] rounded-md px-3 py-2 text-sm">
+        </div>
+        <div>
+          <label for="entry-date" class="block text-xs text-slate-500 mb-1">Date</label>
+          <input id="entry-date" type="date" class="w-full border border-[#E2E8F0] rounded-md px-3 py-2 text-sm">
+        </div>
+      </div>
+
+      <div>
+        <label for="entry-category" class="block text-xs text-slate-500 mb-1">Category</label>
+        <select id="entry-category" class="w-full border border-[#E2E8F0] rounded-md px-3 py-2 text-sm bg-white"></select>
+        <div id="new-category-row" class="hidden mt-2 gap-2">
+          <input id="new-category-input" type="text" maxlength="40" placeholder="New category name" class="flex-1 border border-[#E2E8F0] rounded-md px-3 py-2 text-sm">
+          <button id="add-category-btn" type="button" class="text-xs font-semibold bg-gold hover:bg-[#B38734] text-white rounded-md px-3.5 py-2 disabled:opacity-60">Add</button>
+        </div>
+        <p id="category-error" class="hidden mt-1 text-xs text-red-600"></p>
+      </div>
+
+      <div>
+        <label for="entry-description" class="block text-xs text-slate-500 mb-1">Description (optional)</label>
+        <input id="entry-description" type="text" maxlength="120" class="w-full border border-[#E2E8F0] rounded-md px-3 py-2 text-sm">
+      </div>
+
+      <p id="entry-error" class="hidden text-xs text-red-600"></p>
+
+      <div class="flex justify-end gap-2 pt-1">
+        <button id="entry-cancel" type="button" class="text-xs font-semibold border border-[#E2E8F0] text-slate-600 hover:bg-slate-50 rounded-md px-3.5 py-2">Cancel</button>
+        <button id="entry-submit" type="submit" class="text-xs font-semibold bg-gold hover:bg-[#B38734] text-white rounded-md px-3.5 py-2 disabled:opacity-60">Save entry</button>
+      </div>
+    </form>
   </div>
 </div>
 
